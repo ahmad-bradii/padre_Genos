@@ -26,7 +26,7 @@ const PizzaOfTheDay = () => {
         </div>
         <img
           className="pizza-of-the-day-image"
-          src={pizzaOfTheDay.image}
+          src={`https://padre-genos-api-1.onrender.com${pizzaOfTheDay.image}`}
           alt={pizzaOfTheDay.name}
         />
       </div>
