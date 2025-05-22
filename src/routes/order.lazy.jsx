@@ -24,7 +24,7 @@ function Order() {
   async function checkout() {
     setLoading(true);
 
-    await fetch("/api/order", {
+    await fetch("https://padre-genos-api-1.onrender.com/api/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +51,9 @@ function Order() {
   }, []);
 
   async function fetchPizzaTypes() {
-    const pizzasRes = await fetch("/api/pizzas");
+    const pizzasRes = await fetch(
+      "https://padre-genos-api-1.onrender.com/api/pizzas"
+    );
     const pizzasJson = await pizzasRes.json();
     setPizzaTypes(pizzasJson);
     setLoading(false);

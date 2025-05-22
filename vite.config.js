@@ -7,11 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://padre-genos-api-3.onrender.com/",
+        target: "https://padre-genos-api-1.onrender.com/",
         changeOrigin: true,
       },
       "/public": {
-        target: "https://padre-genos-api-3.onrender.com/",
+        target: "https://padre-genos-api-1.onrender.com/",
         changeOrigin: true,
       },
     },
