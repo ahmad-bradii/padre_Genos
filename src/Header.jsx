@@ -3,7 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { CartContext } from "./contexts";
 
 export default function Header() {
-  const [cart] = useContext(CartContext);
+  const cart = useContext(CartContext);
+  console.log("hey the length is ", cart);
   return (
     <nav>
       <Link to={"/"}>

@@ -10,6 +10,8 @@ const intl = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
+const apiUrl = "https://padre-genos-api-1.onrender.com";
+
 export const Route = createLazyFileRoute("/order")({
   component: Order,
 });
@@ -24,7 +26,7 @@ function Order() {
   async function checkout() {
     setLoading(true);
 
-    await fetch("https://padre-genos-api-1.onrender.com/api/order", {
+    await fetch(`${apiUrl}/api/order`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,23 +53,25 @@ function Order() {
   }, []);
 
   async function fetchPizzaTypes() {
-    const pizzasRes = await fetch(
-      "https://padre-genos-api-1.onrender.com/api/pizzas"
-    );
+    const pizzasRes = await fetch(`${apiUrl}/api/pizzas`);
     const pizzasJson = await pizzasRes.json();
     setPizzaTypes(pizzasJson);
     setLoading(false);
-  }
-
-  function addToCart() {
-    setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
   }
 
   return (
     <div className="order-page">
       <div className="order">
         <h2>Create Order</h2>
-        <form action={addToCart}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setCart([
+              ...cart,
+              { pizza: selectedPizza, size: pizzaSize, price },
+            ]);
+          }}
+        >
           <div>
             <div>
               <label htmlFor="pizza-type">Pizza Type</label>

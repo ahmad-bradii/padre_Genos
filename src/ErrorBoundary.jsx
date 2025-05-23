@@ -3,34 +3,25 @@ import { Link } from "@tanstack/react-router";
 
 class ErrorBoundary extends Component {
   state = { hasError: false };
-
-  constructor(props) {
-    super(props);
-  }
-
   static getDerivedStateFromError() {
     return { hasError: true };
   }
-  componentDidCatch(error, errorInfo) {
-    console.error("ErrorBoundary caught some error ", error, errorInfo);
+  componentDidCatch(error, info) {
+    console.error("ErrorBoundary caught an error", error, info);
   }
-
-  //   componentDidMount() {}
-  //   componentDidUpdate() {}
-  //   componentWillUnmount() {}
-
   render() {
     if (this.state.hasError) {
       return (
         <div className="error-boundary">
-          <h2>Uh Oh!</h2>
+          <h2>Uh oh!</h2>
           <p>
-            There was an error. Please try refreshing the page.{" "}
-            <Link to="/">Click Here</Link> to go back to the home page.
+            There was an error with this listing. <Link to="/">Click here</Link>{" "}
+            to back to the home page.
           </p>
         </div>
       );
     }
+
     return this.props.children;
   }
 }
